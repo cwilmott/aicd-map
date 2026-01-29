@@ -2,9 +2,26 @@
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
-    style: "styles/AICD.json",
-    center: [-122.4, 37.8],
-    zoom: 10
+    style: {
+      version: 8,
+      sources: {
+        'osm-tiles': {
+          type: 'raster',
+          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© OpenStreetMap contributors'
+        }
+      },
+      layers: [{
+        id: 'osm-tiles',
+        type: 'raster',
+        source: 'osm-tiles',
+        minzoom: 0,
+        maxzoom: 19
+      }]
+    },
+    center: [-122.425, 37.765],
+    zoom: 13
   });
   
   map.on('load', () => {
