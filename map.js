@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
-    style: `https://api.maptiler.com/maps/streets-v2-dark/style.json?key=m8nhlsKxzAQtWjCQaaO3`,
+    style: "styles/AICD.json",
     center: [-122.425, 37.765],
     zoom: 13
   });
