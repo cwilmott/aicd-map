@@ -2,24 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
-    style: {
-      version: 8,
-      sources: {
-        'osm-tiles': {
-          type: 'raster',
-          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-          tileSize: 256,
-          attribution: '© OpenStreetMap contributors'
-        }
-      },
-      layers: [{
-        id: 'osm-tiles',
-        type: 'raster',
-        source: 'osm-tiles',
-        minzoom: 0,
-        maxzoom: 19
-      }]
-    },
+    style: `https://api.maptiler.com/maps/streets-v2-dark/style.json?key=m8nhlsKxzAQtWjCQaaO3`,
     center: [-122.425, 37.765],
     zoom: 13
   });
