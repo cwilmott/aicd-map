@@ -44,10 +44,39 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
     
+    // Add selected site source (initially empty)
+    map.addSource('selected-site', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: []
+      }
+    });
+    
+    // Add selected site highlight layer
+    map.addLayer({
+      id: 'selected-site-highlight',
+      type: 'circle',
+      source: 'selected-site',
+      paint: {
+        'circle-radius': 10,
+        'circle-color': 'transparent',
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#ffffff'
+      }
+    });
+    
     // Add click event for sites
     map.on('click', 'sites-circles', (e) => {
-      const properties = e.features[0].properties;
+      const feature = e.features[0];
+      const properties = feature.properties;
       const sidebarContent = document.getElementById('sidebar-content');
+      
+      // Update selected site highlight
+      map.getSource('selected-site').setData({
+        type: 'FeatureCollection',
+        features: [feature]
+      });
       
       let html = `<h1 class="site-name">${properties.name}</h1>`;
       html += `<p class="site-desc">${properties.desc}</p>`;
@@ -75,6 +104,12 @@ window.addEventListener('DOMContentLoaded', () => {
   // Close sidebar button
   document.getElementById('close-sidebar').addEventListener('click', () => {
     document.getElementById('sidebar').classList.remove('active');
+    
+    // Clear selected site highlight
+    map.getSource('selected-site').setData({
+      type: 'FeatureCollection',
+      features: []
+    });
   });
   
   map.on('error', (e) => {
