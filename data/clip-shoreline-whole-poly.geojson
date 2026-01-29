@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "clip-shoreline-whole-poly",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3310" } },
+"features": [
+
+]
+}

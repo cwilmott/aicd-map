@@ -1,0 +1,99 @@
+.triangle-marker {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 18px solid white; /* fill */
+
+  position: relative;
+}
+
+.triangle-marker::after {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: -2px;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 20px solid #f2c200; /* yellow border */
+  z-index: -1;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background-image: url('../assets/pattern-wilder-long.png');
+  background-repeat: repeat-y;
+  background-position: left center;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px 20px 20px 152px;
+  text-align: right;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #f2c200;
+}
+
+#sidebar-content {
+  margin-top: 40px;
+}
+
+.site-name {
+  font-family: 'acumin-pro', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  color: white;
+}
+
+.site-desc {
+  font-family: 'acumin-pro', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.site-col {
+  font-family: 'acumin-pro', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 20px 0 0 0;
+  color: white;
+}
+
+.title-box {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: 'acumin-pro', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #f2c200;
+  padding: 15px 20px;
+  z-index: 100;
+}

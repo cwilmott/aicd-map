@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MapLibre Map</title>
+  <link rel="stylesheet" href="https://use.typekit.net/hbb3lqb.css">
+  <link href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="styles/style.css" rel="stylesheet" />
+  <style>
+    body { 
+      margin: 0; 
+      padding: 0;
+    }
+    #map { 
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="sidebar" class="sidebar">
+    <button id="close-sidebar" class="close-btn">&times;</button>
+    <div id="sidebar-content"></div>
+  </div>
+  <div class="title-box">AMERICAN INDIAN CULTURAL DISTRICT</div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@3.0.6/dist/index.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>
