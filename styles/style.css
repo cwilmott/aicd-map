@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Lovelo Bold';
+  src: url('../assets/Lovelo/lovelo_linebold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .sidebar {
   position: absolute;
   top: 0;
@@ -19,7 +26,7 @@
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
   transition: right 0.3s ease;
   z-index: 1000;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 20px;
   text-align: right;
 }
@@ -66,8 +73,17 @@
   text-align: left;
 }
 
+.sidebar-text {
+  font-family: 'Canva Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 0 20px 0;
+  color: white;
+  text-align: left;
+}
+
 .site-name {
-  font-family: 'acumin-pro', sans-serif;
+  font-family: 'Canva Sans', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 24px;
@@ -76,7 +92,7 @@
 }
 
 .site-desc {
-  font-family: 'acumin-pro', sans-serif;
+  font-family: 'Canva Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   margin: 0 0 10px 0;
@@ -84,7 +100,7 @@
 }
 
 .site-col {
-  font-family: 'acumin-pro', sans-serif;
+  font-family: 'Canva Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   margin: 20px 0 0 0;
@@ -95,10 +111,15 @@
   position: absolute;
   bottom: 20px;
   left: 20px;
-  font-family: 'acumin-pro', sans-serif;
+  font-family: 'Lovelo Black', sans-serif;
   font-weight: 700;
   font-size: 24px;
   color: #f2c200;
   padding: 15px 20px;
   z-index: 100;
+  text-shadow: 
+    -1px -1px 0 rgba(68, 68, 68, 1),
+    1px -1px 0 rgba(68, 68, 68, 1),
+    -1px 1px 0 rgba(68, 68, 68, 1),
+    1px 1px 0 rgba(68, 68, 68, 1);
 }

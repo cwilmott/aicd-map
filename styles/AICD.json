@@ -32,7 +32,7 @@
     },
     "openmaptiles": {
       "type": "vector",
-      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=m8nhlsKxzAQtWjCQaaO3"
+      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL"
     },
     "thunderforest_outdoors": {
       "type": "vector",
@@ -49,6 +49,16 @@
     "creeks": {
       "type": "geojson",
       "data": "https://cwilmott.github.io/historic-gis-data/AICD/creeks.geojson"
+    },
+    "014k1k7": {
+      "type": "image",
+      "url": "https://cwilmott.github.io/aicd-map/assets/sf-aicd.png",
+      "coordinates": [
+        [-122.4223, 37.769399],
+        [-122.415666, 37.769399],
+        [-122.415666, 37.763776],
+        [-122.4223, 37.763776]
+      ]
     }
   },
   "sprite": "https://tiles.locationiq.com/v3/themes/streets/sprite",
@@ -365,6 +375,12 @@
       }
     },
     {
+      "id": "#014k1k7",
+      "type": "raster",
+      "source": "014k1k7",
+      "paint": {"raster-opacity": 0.2}
+    },
+    {
       "id": "water_top",
       "type": "fill",
       "metadata": {"mapbox:group": "1444849382550.77"},
@@ -380,15 +396,16 @@
       "source": "thunderforest_outdoors",
       "source-layer": "elevation",
       "layout": {"visibility": "none"},
-      "paint": {"line-color": "#222"}
+      "paint": {"line-color": "#333333"}
     },
     {
       "id": "elevation",
       "type": "fill",
       "source": "thunderforest_outdoors",
       "source-layer": "elevation",
+      "filter": ["all"],
       "layout": {"visibility": "none"},
-      "paint": {"fill-color": "rgba(17, 17, 17, 1)", "fill-opacity": 0.1}
+      "paint": {"fill-color": "rgba(51, 51, 51, 1)", "fill-opacity": 0.5}
     },
     {
       "id": "aeroway_runway",
