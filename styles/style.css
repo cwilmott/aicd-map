@@ -1,22 +1,8 @@
-.triangle-marker {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 18px solid white; /* fill */
-
-  position: relative;
-}
-
-.triangle-marker::after {
-  content: "";
-  position: absolute;
-  left: -11px;
-  top: -2px;
-  border-left: 11px solid transparent;
-  border-right: 11px solid transparent;
-  border-bottom: 20px solid #f2c200; /* yellow border */
-  z-index: -1;
+@font-face {
+  font-family: 'Lovelo Black';
+  src: url('../assets/Lovelo/lovelo_black.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .sidebar {
@@ -26,14 +12,15 @@
   width: 400px;
   height: 100%;
   background: rgb(0, 0, 0);
-  background-image: url('../assets/pattern-wilder-long.png');
-  background-repeat: repeat-y;
-  background-position: left center;
+  background-image: url('../assets/pattern-wilder.png');
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: 100px auto;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
   transition: right 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
-  padding: 20px 20px 20px 152px;
+  padding: 20px;
   text-align: right;
 }
 
@@ -59,6 +46,24 @@
 
 #sidebar-content {
   margin-top: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  width: 100%;
+  margin-top: auto;
+  display: block;
+}
+
+.sidebar-title {
+  font-family: 'Lovelo Black', sans-serif;
+  font-size: 56px;
+  color: #f2c200;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+  text-align: left;
 }
 
 .site-name {

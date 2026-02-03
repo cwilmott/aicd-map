@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
     style: "styles/AICD.json",
-    center: [-122.425, 37.765],
-    zoom: 13
+    center: [-122.41572, 37.765],
+    zoom: 14
   });
   
   map.on('load', () => {
