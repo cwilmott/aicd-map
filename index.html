@@ -31,7 +31,45 @@
       <img src="assets/sf-aicd.png" alt="SF AICD" class="sidebar-logo" />
     </div>
   </div>
-  <div class="title-box">Ramaytush Ohlone Land - Yelamu</div>
+  
+  <!-- Legend and Filter Box -->
+  <div class="legend-container">
+    <div class="legend-title">Site Types</div>
+    <div class="legend-items">
+      <label class="legend-item">
+        <input type="checkbox" class="legend-checkbox" data-type="Org" checked>
+        <span class="legend-color" style="background-color: #f2c200;"></span>
+        <span class="legend-label">Organizations (13)</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="legend-checkbox" data-type="Ven" checked>
+        <span class="legend-color" style="background-color: #d4a800;"></span>
+        <span class="legend-label">Venues (5)</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="legend-checkbox" data-type="Ind" checked>
+        <span class="legend-color" style="background-color: #b08d00;"></span>
+        <span class="legend-label">Individual (2)</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="legend-checkbox" data-type="Hsg" checked>
+        <span class="legend-color" style="background-color: #8c7200;"></span>
+        <span class="legend-label">Housing (2)</span>
+      </label>
+      <label class="legend-item">
+        <input type="checkbox" class="legend-checkbox" data-type="Biz" checked>
+        <span class="legend-color" style="background-color: #6b5700;"></span>
+        <span class="legend-label">Business (2)</span>
+      </label>
+    </div>
+    <div class="legend-footer">Ramaytush Ohlone Land - Yelamu</div>
+  </div>
+  
+  <!-- Image Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="" />
+  </div>
 
   <script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/pmtiles@3.0.6/dist/index.js"></script>
