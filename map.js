@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
-    style: "/aicd-map/styles/AICD.json",
+    style: "styles/AICD.json",
     center: [-122.41572, 37.765],
     zoom: 14
   });
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Add GeoJSON source
     map.addSource('aicd-data', {
       type: 'geojson',
-      data: '/aicd-map/data/AICD.geojson'
+      data: 'data/AICD.geojson'
     });
     
     // Add polygon outline layer
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Add sites source
     map.addSource('sites-data', {
       type: 'geojson',
-      data: '/aicd-map/data/sites.geojson'
+      data: 'data/sites.geojson'
     });
     
     // Add sites as circle layer
