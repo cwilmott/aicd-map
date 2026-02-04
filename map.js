@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Add GeoJSON source
     map.addSource('aicd-data', {
       type: 'geojson',
-      data: './data/AICD.geojson'
+      data: '/aicd-map/data/AICD.geojson'
     });
     
     // Add polygon outline layer
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Add sites source
     map.addSource('sites-data', {
       type: 'geojson',
-      data: './data/sites.geojson'
+      data: '/aicd-map/data/sites.geojson'
     });
     
     // Add sites as circle layer
