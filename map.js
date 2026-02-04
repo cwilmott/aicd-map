@@ -8,6 +8,23 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   
   map.on('load', () => {
+    // Add AICD boundary source
+    map.addSource('aicd-data', {
+      type: 'geojson',
+      data: 'data/AICD.geojson'
+    });
+    
+    // Add AICD polygon outline layer
+    map.addLayer({
+      id: 'aicd-outline',
+      type: 'line',
+      source: 'aicd-data',
+      paint: {
+        'line-color': '#F2BB16',
+        'line-width': 3
+      }
+    });
+    
     // Add aicd-sites source
     map.addSource('aicd-sites', {
       type: 'geojson',
