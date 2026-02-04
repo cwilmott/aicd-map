@@ -30,10 +30,6 @@
       "url": "https://tiles.locationiq.com/v3/pbf/tiles.json?key=pk.3240b394f1e4a0863c21a98ba7613a71",
       "type": "vector"
     },
-    "openmaptiles": {
-      "type": "vector",
-      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL"
-    },
     "thunderforest_outdoors": {
       "type": "vector",
       "url": "https://tile.thunderforest.com/thunderforest.outdoors-v2.json?apikey=b71f7f0ba4064f5eb9e903859a9cf5c6"
