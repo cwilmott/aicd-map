@@ -37,18 +37,18 @@
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 30px;
   right: 10px;
   background: none;
   border: none;
   font-size: 30px;
   cursor: pointer;
-  color: #333;
+  color: #f2c200;
   line-height: 1;
 }
 
 .close-btn:hover {
-  color: #f2c200;
+  color: lightgray;
 }
 
 #sidebar-content {
@@ -158,6 +158,7 @@
   cursor: pointer;
   width: 16px;
   height: 16px;
+  accent-color: #f2c200;
 }
 
 .legend-color {
@@ -170,6 +171,8 @@
 
 .legend-label {
   flex: 1;
+  font-family: 'Canva Sans', sans-serif;
+  color: lightgray;
 }
 
 .legend-footer {
@@ -192,13 +195,19 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
-  cursor: zoom-out;
+  overflow: auto;
 }
 
 .lightbox.active {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+}
+
+.lightbox.active.has-zoom {
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .lightbox-content {
@@ -206,10 +215,21 @@
   max-height: 90%;
   object-fit: contain;
   cursor: zoom-in;
+  transition: all 0.3s ease;
+  margin: auto;
+}
+
+.lightbox-content.zoomed {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  cursor: zoom-out;
+  margin: 0;
 }
 
 .lightbox-close {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 40px;
   color: #f2c200;

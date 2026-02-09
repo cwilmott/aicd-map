@@ -119,11 +119,16 @@ function openLightbox(imageSrc) {
   const lightboxImg = document.getElementById('lightbox-img');
   lightboxImg.src = imageSrc;
   lightbox.classList.add('active');
+  lightboxImg.classList.remove('zoomed');
+  lightbox.classList.remove('has-zoom');
 }
 
 function closeLightbox() {
   const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
   lightbox.classList.remove('active');
+  lightboxImg.classList.remove('zoomed');
+  lightbox.classList.remove('has-zoom');
 }
 
 // Filter functionality
@@ -154,10 +159,23 @@ function updateFilter(map) {
 document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('lightbox');
   const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxImg = document.getElementById('lightbox-img');
   
+  // Click on background closes lightbox
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
       closeLightbox();
+    }
+  });
+  
+  // Click on image toggles zoom
+  lightboxImg.addEventListener('click', (e) => {
+    e.stopPropagation();
+    lightboxImg.classList.toggle('zoomed');
+    lightbox.classList.toggle('has-zoom');
+    // Scroll to top when zooming in
+    if (lightboxImg.classList.contains('zoomed')) {
+      lightbox.scrollTop = 0;
     }
   });
   
