@@ -1,4 +1,8 @@
 // Wait for page to load
+function shouldDisplayImage(url) {
+  return Boolean(url) && !url.toLowerCase().includes('bongo-books.com');
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
@@ -74,18 +78,12 @@ window.addEventListener('DOMContentLoaded', () => {
       if (properties.original_Address) {
         html += `<p class="site-desc">${properties.original_Address}</p>`;
       }
-      
-      if (properties.original_TL_link1) {
-        html += `<img src="${properties.original_TL_link1}" class="site-image" alt="${properties.original_Name}" onclick="openLightbox('${properties.original_TL_link1}')" />`;
-      }
-      
-      if (properties.original_TL_link2) {
-        html += `<img src="${properties.original_TL_link2}" class="site-image" alt="${properties.original_Name}" onclick="openLightbox('${properties.original_TL_link2}')" />`;
-      }
-      
-      if (properties.original_TL_link3) {
-        html += `<img src="${properties.original_TL_link3}" class="site-image" alt="${properties.original_Name}" onclick="openLightbox('${properties.original_TL_link3}')" />`;
-      }
+
+      [properties.original_TL_link1, properties.original_TL_link2, properties.original_TL_link3]
+        .filter(shouldDisplayImage)
+        .forEach((imageUrl) => {
+          html += `<img src="${imageUrl}" class="site-image" alt="${properties.original_Name}" onclick="openLightbox('${imageUrl}')" />`;
+        });
       
       sidebarContent.innerHTML = html;
       
@@ -115,6 +113,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Lightbox functions
 function openLightbox(imageSrc) {
+  if (!shouldDisplayImage(imageSrc)) {
+    return;
+  }
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   lightboxImg.src = imageSrc;
