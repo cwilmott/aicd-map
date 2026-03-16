@@ -3,6 +3,31 @@ function shouldDisplayImage(url) {
   return Boolean(url) && !url.toLowerCase().includes('bongo-books.com');
 }
 
+function firstDefined(...values) {
+  return values.find((value) => value !== undefined && value !== null);
+}
+
+function getImageUrls(properties) {
+  const buildingImage = firstDefined(properties.building_images1, properties.original_building_images1);
+
+  if (Array.isArray(buildingImage)) {
+    return buildingImage.filter(Boolean);
+  }
+
+  if (typeof buildingImage === 'string' && buildingImage.trim()) {
+    return [buildingImage.trim()];
+  }
+
+  return [
+    properties.TL_link1,
+    properties.TL_link2,
+    properties.TL_link3,
+    properties.original_TL_link1,
+    properties.original_TL_link2,
+    properties.original_TL_link3
+  ].filter(Boolean);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const map = new maplibregl.Map({
     container: "map",
@@ -35,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Add aicd-sites source
     map.addSource('aicd-sites', {
       type: 'geojson',
-      data: 'data/aicd-sites.geojson'
+      data: 'data/aicd-sites-2.geojson'
     });
     
     // Add sites as circle layer
@@ -47,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'circle-radius': 6,
         'circle-color': [
           'match',
-          ['get', 'original_Type'],
+          ['coalesce', ['get', 'Type'], ['get', 'original_Type']],
           'Org', '#f2c200',  // Brightest yellow (13 sites)
           'Ven', '#d4a800',  // Medium-bright yellow (5 sites)
           'Ind', '#b08d00',  // Medium yellow (2 sites)
@@ -65,25 +90,28 @@ window.addEventListener('DOMContentLoaded', () => {
       const feature = e.features[0];
       const properties = feature.properties;
       const sidebarContent = document.getElementById('sidebar-content');
+      const siteName = firstDefined(properties.Name, properties.original_Name) || 'Unknown';
+      const siteYear1 = firstDefined(properties.Year1, properties.original_Year1);
+      const siteYear2 = firstDefined(properties.Year2, properties.original_Year2);
+      const siteAddress = firstDefined(properties.Address, properties.original_Address);
+      const imageUrls = getImageUrls(properties).filter(shouldDisplayImage);
       
-      let html = `<h1 class="site-name">${properties.original_Name || 'Unknown'}</h1>`;
+      let html = `<h1 class="site-name">${siteName}</h1>`;
       
-      if (properties.original_Year1) {
-        const yearText = properties.original_Year2 
-          ? `${properties.original_Year1}-${properties.original_Year2}` 
-          : properties.original_Year1;
+      if (siteYear1) {
+        const yearText = siteYear2 
+          ? `${siteYear1}-${siteYear2}` 
+          : siteYear1;
         html += `<p class="site-col">${yearText}</p>`;
       }
       
-      if (properties.original_Address) {
-        html += `<p class="site-desc">${properties.original_Address}</p>`;
+      if (siteAddress) {
+        html += `<p class="site-desc">${siteAddress}</p>`;
       }
 
-      [properties.original_TL_link1, properties.original_TL_link2, properties.original_TL_link3]
-        .filter(shouldDisplayImage)
-        .forEach((imageUrl) => {
-          html += `<img src="${imageUrl}" class="site-image" alt="${properties.original_Name}" onclick="openLightbox('${imageUrl}')" />`;
-        });
+      imageUrls.forEach((imageUrl) => {
+        html += `<img src="${imageUrl}" class="site-image" alt="${siteName}" onclick="openLightbox('${imageUrl}')" />`;
+      });
       
       sidebarContent.innerHTML = html;
       
@@ -147,13 +175,13 @@ function updateFilter(map) {
   // Create filter expression
   if (activeTypes.length === 0) {
     // Hide all if nothing selected
-    map.setFilter('aicd-sites-circles', ['==', 'original_Type', '']);
+    map.setFilter('aicd-sites-circles', ['==', ['coalesce', ['get', 'Type'], ['get', 'original_Type']], '']);
   } else if (activeTypes.length === 5) {
     // Show all if everything selected
     map.setFilter('aicd-sites-circles', null);
   } else {
     // Show only selected types
-    map.setFilter('aicd-sites-circles', ['in', 'original_Type', ...activeTypes]);
+    map.setFilter('aicd-sites-circles', ['in', ['coalesce', ['get', 'Type'], ['get', 'original_Type']], ['literal', activeTypes]]);
   }
 }
 
