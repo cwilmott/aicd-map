@@ -116,6 +116,37 @@
   border-radius: 4px;
 }
 
+.site-image-desc {
+  font-family: 'Canva Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 6px 0 16px 0;
+  color: lightgray;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.site-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 18px 0;
+  align-items: flex-start;
+}
+
+.site-link {
+  font-family: 'Canva Sans', sans-serif;
+  font-size: 14px;
+  color: #f2c200;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.site-link:hover {
+  color: #fff1b3;
+}
+
 /* Legend and Filter Styles */
 .legend-container {
   position: absolute;
