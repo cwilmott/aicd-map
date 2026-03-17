@@ -4,51 +4,39 @@ function shouldDisplayImage(url) {
 }
 
 const SITE_TYPE_PALETTE = {
-  Org: '#f2c200',
-  Ven: '#d4a800',
-  Ind: '#b08d00',
-  Hsg: '#8c7200',
-  Biz: '#6b5700',
-  'Cultural-Sites': '#947800',
-  'Biz-Past': '#7d6500',
-  Individuals: '#a88a00',
-  'Biz-Pres': '#5d4b00',
-  Events: '#c49c00',
-  'Org-Past': '#8b7000',
-  'Art Activations (2)': '#b89100',
-  'Org-Pres': '#dbaf00'
+  'Org-Pres': '#f2c200',
+  'Org-Past': '#dbb010',
+  'Biz-Pres': '#c49e1a',
+  'Biz-Past': '#ad8c24',
+  'Cultural-Sites': '#967a2e',
+  Individuals: '#806838',
+  Events: '#695642',
+  Hsg: '#52444c',
+  'Art Activations': '#3b3256'
 };
 
 const SITE_TYPE_LABELS = {
-  Org: 'Organizations',
-  Ven: 'Venues',
-  Ind: 'Individual',
-  Hsg: 'Housing',
-  Biz: 'Business',
-  'Cultural-Sites': 'Cultural Sites',
-  'Biz-Past': 'Business (Past)',
-  Individuals: 'Individuals',
-  'Biz-Pres': 'Business (Present)',
-  Events: 'Events',
+  'Org-Pres': 'Organizations (Present)',
   'Org-Past': 'Organizations (Past)',
-  'Art Activations (2)': 'Art Activations',
-  'Org-Pres': 'Organizations (Present)'
+  'Biz-Pres': 'Business (Present)',
+  'Biz-Past': 'Business (Past)',
+  'Cultural-Sites': 'Cultural Sites',
+  Individuals: 'Individuals',
+  Events: 'Events',
+  Hsg: 'Housing',
+  'Art Activations': 'Art Activations'
 };
 
 const SITE_TYPE_ORDER = [
-  'Org',
-  'Ven',
-  'Ind',
-  'Hsg',
-  'Biz',
-  'Cultural-Sites',
-  'Biz-Past',
-  'Individuals',
-  'Biz-Pres',
-  'Events',
+  'Org-Pres',
   'Org-Past',
-  'Art Activations (2)',
-  'Org-Pres'
+  'Biz-Pres',
+  'Biz-Past',
+  'Cultural-Sites',
+  'Individuals',
+  'Events',
+  'Hsg',
+  'Art Activations'
 ];
 
 function getCategoryColor(type) {

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AICD Sites Admin</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-header">
+      <h1>AICD Sites Admin</h1>
+      <p>Add new sites or edit existing records.</p>
+    </header>
+
+    <section class="admin-panel">
+      <div class="panel-row">
+        <label for="site-picker">Existing sites</label>
+        <select id="site-picker">
+          <option value="">Select a site to edit...</option>
+        </select>
+      </div>
+      <div class="button-row">
+        <button id="refresh-sites" type="button">Refresh</button>
+        <button id="new-site" type="button">New Site</button>
+      </div>
+    </section>
+
+    <section class="admin-panel">
+      <form id="site-form">
+        <input id="row-id" type="hidden" />
+
+        <div class="panel-grid">
+          <label>
+            Site Name
+            <input name="original_Name" required />
+          </label>
+
+          <label>
+            Type
+            <select name="original_Type" required>
+              <option value="">Select type...</option>
+              <option value="Org-Pres">Organizations (Present)</option>
+              <option value="Org-Past">Organizations (Past)</option>
+              <option value="Biz-Pres">Business (Present)</option>
+              <option value="Biz-Past">Business (Past)</option>
+              <option value="Cultural-Sites">Cultural Sites</option>
+              <option value="Individuals">Individuals</option>
+              <option value="Events">Events</option>
+              <option value="Hsg">Housing</option>
+              <option value="Art Activations">Art Activations</option>
+            </select>
+          </label>
+
+          <label>
+            Address
+            <input name="original_Address" />
+          </label>
+
+          <label>
+            Year Start
+            <input name="original_Year1" />
+          </label>
+
+          <label>
+            Year End
+            <input name="original_Year2" />
+          </label>
+
+          <label>
+            Latitude
+            <input name="lat" />
+          </label>
+
+          <label>
+            Longitude
+            <input name="lon" />
+          </label>
+
+          <label>
+            Building Image URL
+            <input name="building_images1" type="url" />
+          </label>
+
+          <label>
+            SF Heritage Link
+            <input name="link" type="url" />
+          </label>
+        </div>
+
+        <label class="full-width">
+          Description
+          <textarea name="Description" rows="6"></textarea>
+        </label>
+
+        <div class="button-row">
+          <button id="save-site" type="submit">Save Site</button>
+          <span id="status-message" role="status"></span>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
