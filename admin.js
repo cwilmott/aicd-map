@@ -1,3 +1,6 @@
+const BASEROW_TABLE_URL = window.BASEROW_TABLE_URL || '';
+const BASEROW_TOKEN = window.BASEROW_API_TOKEN || '';
+
 const sitePicker = document.getElementById('site-picker');
 const siteForm = document.getElementById('site-form');
 const rowIdInput = document.getElementById('row-id');
@@ -67,14 +70,22 @@ function clearForm() {
 }
 
 async function fetchRows() {
-  const response = await fetch('/api/baserow/rows');
+  const url = `${BASEROW_TABLE_URL}?user_field_names=true&size=200`;
+  const headers = { Accept: 'application/json' };
+  if (BASEROW_TOKEN) headers.Authorization = `Token ${BASEROW_TOKEN}`;
 
-  if (!response.ok) {
-    throw new Error('Unable to load rows from the server.');
+  const allResults = [];
+  let nextUrl = url;
+
+  while (nextUrl) {
+    const response = await fetch(nextUrl, { headers });
+    if (!response.ok) throw new Error('Unable to load rows from Baserow.');
+    const payload = await response.json();
+    if (Array.isArray(payload.results)) allResults.push(...payload.results);
+    nextUrl = payload.next || null;
   }
 
-  const payload = await response.json();
-  return Array.isArray(payload.results) ? payload.results : [];
+  return allResults;
 }
 
 async function refreshRows() {
@@ -91,20 +102,26 @@ async function refreshRows() {
 
 async function saveSite(payload, rowId) {
   const method = rowId ? 'PATCH' : 'POST';
-  const endpoint = rowId ? `/api/baserow/rows/${rowId}` : '/api/baserow/rows';
+  const endpoint = rowId
+    ? `${BASEROW_TABLE_URL}${rowId}/?user_field_names=true`
+    : `${BASEROW_TABLE_URL}?user_field_names=true`;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  };
+  if (BASEROW_TOKEN) headers.Authorization = `Token ${BASEROW_TOKEN}`;
 
   const response = await fetch(endpoint, {
     method,
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify(payload)
   });
 
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || 'Save failed.');
+    throw new Error(result.detail || result.message || 'Save failed.');
   }
 
   return result;

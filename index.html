@@ -94,11 +94,11 @@
   <script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/pmtiles@3.0.6/dist/index.js"></script>
   <script>
-    // Optional Baserow configuration.
-    // If these are left blank, the app falls back to local data/aicd-sites-2.geojson.
+    // Baserow configuration for direct API access (works on GitHub Pages).
+    // Falls back to local data/aicd-sites-2.geojson if these fail.
     window.BASEROW_GEOJSON_URL = '';
-    window.BASEROW_ROWS_API_URL = '/api/baserow/rows';
-    window.BASEROW_API_TOKEN = '';
+    window.BASEROW_ROWS_API_URL = 'https://api.baserow.io/api/database/rows/table/889001/?user_field_names=true&size=200';
+    window.BASEROW_API_TOKEN = '7hZWVFYnh4Sbj9YouYfrpDXg8rasZV1s';
   </script>
   <script src="map.js"></script>
 </body>
