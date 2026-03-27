@@ -49,6 +49,8 @@ http.get('http://127.0.0.1:3000/api/baserow/rows', res => {
           Description: row.Description || '',
           building_images1: row.building_images1 || '',
           building_images2: row.building_images2 || '',
+          field_7688476: row.field_7688476 || '',
+          field_7688477: row.field_7688477 || '',
           link: row.link || '',
           formatted: row.formatted || ''
         },

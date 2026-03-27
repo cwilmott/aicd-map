@@ -68,28 +68,44 @@
           </label>
 
           <label>
-            Latitude
+            Latitude (should be a decimal number, e.g. 37.7749) 
+            To look up lat/lon for an address, you can use a free geocoding service like https://www.latlong.net/ or https://www.geocod.io/
             <input name="lat" />
           </label>
 
           <label>
-            Longitude
+            Longitude (should be a decimal number, e.g. -122.4194)
             <input name="lon" />
           </label>
 
           <label>
-            Building Image URL
+            Image 1 URL (ends with .jpg, .png, etc.)
             <input name="building_images1" type="url" />
           </label>
 
           <label>
-            SF Heritage Link
+            Image 1 Caption (important for accessibility - should describe the image for someone who can't see it)
+            <input name="field_7688476" />
+          </label>
+
+          <label>
+            Image 2 URL (ends with .jpg, .png, etc.)
+            <input name="building_images2" type="url" />
+          </label>
+
+          <label>
+            Image 2 Caption
+            <input name="field_7688477" />
+          </label>
+
+          <label>
+            Link to orgnization, event page, article, etc. (should start with http:// or https://)
             <input name="link" type="url" />
           </label>
         </div>
 
         <label class="full-width">
-          Description
+          Description of the site
           <textarea name="Description" rows="6"></textarea>
         </label>
 

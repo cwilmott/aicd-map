@@ -25,7 +25,9 @@ const EDITABLE_FIELDS = [
   'original_TL_reference',
   'formatted',
   'building_images1',
+  'field_7688476',
   'building_images2',
+  'field_7688477',
   'lon',
   'lat',
   'link',
@@ -206,7 +208,7 @@ function serveStatic(req, res) {
 
     res.writeHead(200, {
       'Content-Type': contentType,
-      'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=300'
+      'Cache-Control': 'no-cache'
     });
 
     fs.createReadStream(fullPath).pipe(res);

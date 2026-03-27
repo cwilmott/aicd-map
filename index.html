@@ -36,51 +36,7 @@
   <div class="legend-container">
     <div class="legend-title">Site Types</div>
     <div class="legend-items">
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Org-Pres" checked>
-        <span class="legend-color" style="background-color: #f2c200;"></span>
-        <span class="legend-label">Organizations (Present)</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Org-Past" checked>
-        <span class="legend-color" style="background-color: #dbb010;"></span>
-        <span class="legend-label">Organizations (Past)</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Biz-Pres" checked>
-        <span class="legend-color" style="background-color: #c49e1a;"></span>
-        <span class="legend-label">Business (Present)</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Biz-Past" checked>
-        <span class="legend-color" style="background-color: #ad8c24;"></span>
-        <span class="legend-label">Business (Past)</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Cultural-Sites" checked>
-        <span class="legend-color" style="background-color: #967a2e;"></span>
-        <span class="legend-label">Cultural Sites</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Individuals" checked>
-        <span class="legend-color" style="background-color: #806838;"></span>
-        <span class="legend-label">Individuals</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Events" checked>
-        <span class="legend-color" style="background-color: #695642;"></span>
-        <span class="legend-label">Events</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Hsg" checked>
-        <span class="legend-color" style="background-color: #52444c;"></span>
-        <span class="legend-label">Housing</span>
-      </label>
-      <label class="legend-item">
-        <input type="checkbox" class="legend-checkbox" data-type="Art Activations" checked>
-        <span class="legend-color" style="background-color: #3b3256;"></span>
-        <span class="legend-label">Art Activations</span>
-      </label>
+      <!-- Populated dynamically by renderLegend() in map.js -->
     </div>
     <div class="legend-footer">Ramaytush Ohlone Land - Yelamu</div>
   </div>
@@ -100,6 +56,6 @@
     window.BASEROW_ROWS_API_URL = 'https://api.baserow.io/api/database/rows/table/889001/?user_field_names=true&size=200';
     window.BASEROW_API_TOKEN = '7hZWVFYnh4Sbj9YouYfrpDXg8rasZV1s';
   </script>
-  <script src="map.js"></script>
+  <script src="map.js?v=5"></script>
 </body>
 </html>

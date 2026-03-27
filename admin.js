@@ -59,6 +59,9 @@ function fillForm(row) {
   siteForm.elements.lat.value = row.lat || '';
   siteForm.elements.lon.value = row.lon || '';
   siteForm.elements.building_images1.value = row.building_images1 || '';
+  siteForm.elements.field_7688476.value = row.field_7688476 || '';
+  siteForm.elements.building_images2.value = row.building_images2 || '';
+  siteForm.elements.field_7688477.value = row.field_7688477 || '';
   siteForm.elements.link.value = row.link || '';
   siteForm.elements.Description.value = row.Description || '';
 }

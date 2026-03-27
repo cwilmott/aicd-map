@@ -4,15 +4,17 @@ function shouldDisplayImage(url) {
 }
 
 const SITE_TYPE_PALETTE = {
-  'Org-Pres': '#f2c200',
-  'Org-Past': '#dbb010',
-  'Biz-Pres': '#c49e1a',
-  'Biz-Past': '#ad8c24',
-  'Cultural-Sites': '#967a2e',
-  Individuals: '#806838',
-  Events: '#695642',
-  Hsg: '#52444c',
-  'Art Activations': '#3b3256'
+  'Org-Pres': '#FCC93A',
+  'Org-Past': '#A7945E',
+  'Biz-Pres': '#E5CC45',
+  'Biz-Past': '#7D745B',
+  'Cultural-Sites': '#D2B053',
+  Individuals: '#332F26',
+  Events: '#52504A',
+  Hsg: '#756435',
+  'Art Activations': '#9E4A2F',
+  Exhibition: '#8B6914',
+  'Settler Organisation': '#5B7065'
 };
 
 const SITE_TYPE_LABELS = {
@@ -24,7 +26,9 @@ const SITE_TYPE_LABELS = {
   Individuals: 'Individuals',
   Events: 'Events',
   Hsg: 'Housing',
-  'Art Activations': 'Art Activations'
+  'Art Activations': 'Art Activations',
+  Exhibition: 'Exhibition',
+  'Settler Organisation': 'Settler Organisation'
 };
 
 const SITE_TYPE_ORDER = [
@@ -36,11 +40,13 @@ const SITE_TYPE_ORDER = [
   'Individuals',
   'Events',
   'Hsg',
-  'Art Activations'
+  'Art Activations',
+  'Exhibition',
+  'Settler Organisation'
 ];
 
 function getCategoryColor(type) {
-  return SITE_TYPE_PALETTE[type] || '#f2c200';
+  return SITE_TYPE_PALETTE[type] || '#D2B053';
 }
 
 function getCategoryLabel(type) {
@@ -94,7 +100,7 @@ function buildCircleColorExpression(categories) {
     expression.push(type, getCategoryColor(type));
   });
 
-  expression.push('#f2c200');
+  expression.push('#D2B053');
   return expression;
 }
 
@@ -312,6 +318,43 @@ function getImageUrls(properties) {
   ].filter(Boolean);
 }
 
+function getImageEntries(properties) {
+  const entries = [];
+
+  const img1 = firstDefined(properties.building_images1, properties.original_building_images1);
+  const caption1 = firstDefined(properties['bi1-image-caption'], properties.field_7688476, properties.original_field_7688476) || '';
+  if (Array.isArray(img1)) {
+    img1.filter(Boolean).forEach((url) => entries.push({ url, caption: caption1 }));
+  } else if (typeof img1 === 'string' && img1.trim()) {
+    entries.push({ url: img1.trim(), caption: caption1 });
+  }
+
+  const img2 = firstDefined(properties.building_images2, properties.original_building_images2);
+  const caption2 = firstDefined(properties['bi2-image-caption'], properties.field_7688477, properties.original_field_7688477) || '';
+  if (Array.isArray(img2)) {
+    img2.filter(Boolean).forEach((url) => entries.push({ url, caption: caption2 }));
+  } else if (typeof img2 === 'string' && img2.trim()) {
+    entries.push({ url: img2.trim(), caption: caption2 });
+  }
+
+  if (entries.length === 0) {
+    [
+      properties.TL_link1,
+      properties.TL_link2,
+      properties.TL_link3,
+      properties.TL_link4,
+      properties.TL_link5,
+      properties.TL_link6,
+      properties.TL_link7,
+      properties.original_TL_link1,
+      properties.original_TL_link2,
+      properties.original_TL_link3
+    ].filter(Boolean).forEach((url) => entries.push({ url, caption: '' }));
+  }
+
+  return entries;
+}
+
 function isLikelyUrl(value) {
   return typeof value === 'string' && /^https?:\/\//i.test(value.trim());
 }
@@ -411,7 +454,8 @@ window.addEventListener('DOMContentLoaded', () => {
       const siteYear2 = firstDefined(properties.Year2, properties.original_Year2);
       const siteAddress = firstDefined(properties.Address, properties.original_Address);
       const siteDescription = firstDefined(properties.Description, properties.description, properties.original_Description);
-      const imageUrls = getImageUrls(properties).filter(shouldDisplayImage);
+      const imageEntries = getImageEntries(properties).filter((entry) => shouldDisplayImage(entry.url));
+      const imageUrls = imageEntries.map((entry) => entry.url);
       const sfHeritageLink = getSfHeritageLink(properties, imageUrls);
       
       let html = `<h1 class="site-name">${siteName}</h1>`;
@@ -427,8 +471,12 @@ window.addEventListener('DOMContentLoaded', () => {
         html += `<p class="site-desc">${siteAddress}</p>`;
       }
 
-      imageUrls.forEach((imageUrl) => {
-        html += `<img src="${imageUrl}" class="site-image" alt="${siteName}" onclick="openLightbox('${imageUrl}')" />`;
+      imageEntries.forEach((entry) => {
+        html += `<figure class="site-figure"><img src="${entry.url}" class="site-image" alt="${siteName}" onclick="openLightbox('${entry.url}')" />`;
+        if (entry.caption && String(entry.caption).trim()) {
+          html += `<figcaption class="site-caption">${entry.caption}</figcaption>`;
+        }
+        html += `</figure>`;
       });
 
       if (siteDescription && String(siteDescription).trim()) {

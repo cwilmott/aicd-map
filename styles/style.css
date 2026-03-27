@@ -112,8 +112,23 @@
 .site-image {
   width: 100%;
   height: auto;
-  margin: 15px 0;
+  margin: 0;
   border-radius: 4px;
+}
+
+.site-figure {
+  margin: 15px 0;
+  padding: 0;
+}
+
+.site-caption {
+  font-family: 'Canva Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: lightgray;
+  text-align: left;
+  margin-top: 6px;
+  font-style: italic;
 }
 
 .site-image-desc {
