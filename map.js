@@ -1,6 +1,6 @@
 // Wait for page to load
 function shouldDisplayImage(url) {
-  return Boolean(url) && !url.toLowerCase().includes('bongo-books.com');
+  return Boolean(url);
 }
 
 const SITE_TYPE_PALETTE = {
@@ -14,7 +14,8 @@ const SITE_TYPE_PALETTE = {
   Hsg: '#756435',
   'Art Activations': '#9E4A2F',
   Exhibition: '#8B6914',
-  'Settler Organisation': '#5B7065'
+  'Settler Organisation': '#5B7065',
+  'Genocide Sites': '#2B3A5C'
 };
 
 const SITE_TYPE_LABELS = {
@@ -28,7 +29,8 @@ const SITE_TYPE_LABELS = {
   Hsg: 'Housing',
   'Art Activations': 'Art Activations',
   Exhibition: 'Exhibition',
-  'Settler Organisation': 'Settler Organisation'
+  'Settler Organisation': 'Settler Organisation',
+  'Genocide Sites': 'Genocide Sites'
 };
 
 const SITE_TYPE_ORDER = [
@@ -42,7 +44,8 @@ const SITE_TYPE_ORDER = [
   'Hsg',
   'Art Activations',
   'Exhibition',
-  'Settler Organisation'
+  'Settler Organisation',
+  'Genocide Sites'
 ];
 
 function getCategoryColor(type) {
