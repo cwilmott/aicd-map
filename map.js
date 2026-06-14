@@ -362,7 +362,7 @@ function isLikelyUrl(value) {
   return typeof value === 'string' && /^https?:\/\//i.test(value.trim());
 }
 
-function getSfHeritageLink(properties, imageUrls) {
+function getSiteLink(properties, imageUrls) {
   const imageSet = new Set((imageUrls || []).map((url) => String(url).trim()));
   const candidates = [
     properties.link,
@@ -386,8 +386,7 @@ function getSfHeritageLink(properties, imageUrls) {
     }
 
     const normalized = value.trim();
-    const isSfHeritage = normalized.toLowerCase().includes('sfheritage.org');
-    if (isSfHeritage && !imageSet.has(normalized)) {
+    if (!imageSet.has(normalized)) {
       return normalized;
     }
   }
@@ -459,7 +458,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const siteDescription = firstDefined(properties.Description, properties.description, properties.original_Description);
       const imageEntries = getImageEntries(properties).filter((entry) => shouldDisplayImage(entry.url));
       const imageUrls = imageEntries.map((entry) => entry.url);
-      const sfHeritageLink = getSfHeritageLink(properties, imageUrls);
+      const siteLink = getSiteLink(properties, imageUrls);
       
       let html = `<h1 class="site-name">${siteName}</h1>`;
       
@@ -486,8 +485,10 @@ window.addEventListener('DOMContentLoaded', () => {
         html += `<p class="site-image-desc">${siteDescription}</p>`;
       }
 
-      if (sfHeritageLink) {
-        html += `<div class="site-links"><a class="site-link" href="${sfHeritageLink}" target="_blank" rel="noopener noreferrer">See more on the SF Heritage Website</a></div>`;
+      if (siteLink) {
+        const isSfHeritage = siteLink.toLowerCase().includes('sfheritage.org');
+        const linkLabel = isSfHeritage ? 'See more on the SF Heritage Website' : 'Learn more';
+        html += `<div class="site-links"><a class="site-link" href="${siteLink}" target="_blank" rel="noopener noreferrer">${linkLabel}</a></div>`;
       }
       
       sidebarContent.innerHTML = html;
